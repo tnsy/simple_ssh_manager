@@ -35,7 +35,7 @@ v =  ssh_hosts.get(ssh_list[index])
 #create string for ssh login
 login = 'ssh ' + v[0] + '@' + v[1]
 
-print '\nLogging to', ssh_list[index], ' \n'
+print '\nConnecting to', ssh_list[index], ' \n'
 os.system('date')
 
 #initiate ssh login
