@@ -4,13 +4,20 @@ import os
 
 ssh_list = []
 ssh_list_counter = 0
+ssh_hosts = {}
 
-'''Put the 'hostname'(printed name):['login', 'ip_address'] in ssh_hosts
-dictionary.''' #
+#logins file needs this syntax: name login ip
+#each record on separarate line
 
-ssh_hosts = {'my_own':['tns', '127.0.0.1'],
-             'my_own_2':['tns', '128.0.0.1']
-            }
+logins = open('logins')
+#readlines
+x = logins.readlines()
+for i in range(len(x)):
+    a = x[i].split()
+    name = a[0]
+    login = a[1]
+    ip = a[2]
+    ssh_hosts[name] = login, ip
 
 #create a list from ssh_hosts keys
 for k in ssh_hosts.keys():
@@ -18,7 +25,7 @@ for k in ssh_hosts.keys():
 
 ssh_list = sorted(ssh_list)
 
-print '\nSelect host to ssh to:\n'
+print '\n', ' SSH MANAGER '.center(25, '~'), '\n'
 
 #use above list to print out all hosts
 for i in ssh_list:
@@ -43,4 +50,4 @@ try:
     os.system(login)
 
 except KeyboardInterrupt:
-    print '\nExiting'
+    print '\n\nCTRL + C > Exiting\n'
